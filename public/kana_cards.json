@@ -1,0 +1,1046 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "total": 102,
+    "groups": {
+      "seion": {
+        "label": "清音",
+        "count": 46
+      },
+      "dakuten": {
+        "label": "浊音",
+        "count": 18
+      },
+      "handakuten": {
+        "label": "半浊音",
+        "count": 5
+      },
+      "youon": {
+        "label": "拗音",
+        "count": 33
+      }
+    }
+  },
+  "cards": [
+    {
+      "id": "a",
+      "roma": "a",
+      "hira": "あ",
+      "kata": "ア",
+      "word_ja": "あおい / アイス",
+      "word_zh": "青い·蓝 / 冰淇淋",
+      "group": "seion",
+      "row": "あ行"
+    },
+    {
+      "id": "i",
+      "roma": "i",
+      "hira": "い",
+      "kata": "イ",
+      "word_ja": "いぬ / イメージ",
+      "word_zh": "犬·狗 / 印象",
+      "group": "seion",
+      "row": "あ行"
+    },
+    {
+      "id": "u",
+      "roma": "u",
+      "hira": "う",
+      "kata": "ウ",
+      "word_ja": "うみ / ウイルス",
+      "word_zh": "海·大海 / 病毒",
+      "group": "seion",
+      "row": "あ行"
+    },
+    {
+      "id": "e",
+      "roma": "e",
+      "hira": "え",
+      "kata": "エ",
+      "word_ja": "えき / エアコン",
+      "word_zh": "駅·车站 / 空调",
+      "group": "seion",
+      "row": "あ行"
+    },
+    {
+      "id": "o",
+      "roma": "o",
+      "hira": "お",
+      "kata": "オ",
+      "word_ja": "おんな / オレンジ",
+      "word_zh": "女·女人 / 橙子",
+      "group": "seion",
+      "row": "あ行"
+    },
+    {
+      "id": "ka",
+      "roma": "ka",
+      "hira": "か",
+      "kata": "カ",
+      "word_ja": "かわ / カメラ",
+      "word_zh": "川·河流 / 相机",
+      "group": "seion",
+      "row": "か行"
+    },
+    {
+      "id": "ki",
+      "roma": "ki",
+      "hira": "き",
+      "kata": "キ",
+      "word_ja": "きもの / キッチン",
+      "word_zh": "着物·和服 / 厨房",
+      "group": "seion",
+      "row": "か行"
+    },
+    {
+      "id": "ku",
+      "roma": "ku",
+      "hira": "く",
+      "kata": "ク",
+      "word_ja": "くに / クラス",
+      "word_zh": "国·国家 / 班级",
+      "group": "seion",
+      "row": "か行"
+    },
+    {
+      "id": "ke",
+      "roma": "ke",
+      "hira": "け",
+      "kata": "ケ",
+      "word_ja": "けさ / ケーキ",
+      "word_zh": "今朝·今早 / 蛋糕",
+      "group": "seion",
+      "row": "か行"
+    },
+    {
+      "id": "ko",
+      "roma": "ko",
+      "hira": "こ",
+      "kata": "コ",
+      "word_ja": "こい / コーヒー",
+      "word_zh": "恋·恋爱 / 咖啡",
+      "group": "seion",
+      "row": "か行"
+    },
+    {
+      "id": "sa",
+      "roma": "sa",
+      "hira": "さ",
+      "kata": "サ",
+      "word_ja": "さくら / サラダ",
+      "word_zh": "桜·樱花 / 沙拉",
+      "group": "seion",
+      "row": "さ行"
+    },
+    {
+      "id": "shi",
+      "roma": "shi",
+      "hira": "し",
+      "kata": "シ",
+      "word_ja": "しろ / シャツ",
+      "word_zh": "城·城堡 / 衬衫",
+      "group": "seion",
+      "row": "さ行"
+    },
+    {
+      "id": "su",
+      "roma": "su",
+      "hira": "す",
+      "kata": "ス",
+      "word_ja": "すき / スポーツ",
+      "word_zh": "好き·喜欢 / 运动",
+      "group": "seion",
+      "row": "さ行"
+    },
+    {
+      "id": "se",
+      "roma": "se",
+      "hira": "せ",
+      "kata": "セ",
+      "word_ja": "せかい / セール",
+      "word_zh": "世界·世界 / 促销",
+      "group": "seion",
+      "row": "さ行"
+    },
+    {
+      "id": "so",
+      "roma": "so",
+      "hira": "そ",
+      "kata": "ソ",
+      "word_ja": "そら / ソファ",
+      "word_zh": "空·天空 / 沙发",
+      "group": "seion",
+      "row": "さ行"
+    },
+    {
+      "id": "ta",
+      "roma": "ta",
+      "hira": "た",
+      "kata": "タ",
+      "word_ja": "たべる / タクシー",
+      "word_zh": "食べる·吃 / 出租车",
+      "group": "seion",
+      "row": "た行"
+    },
+    {
+      "id": "chi",
+      "roma": "chi",
+      "hira": "ち",
+      "kata": "チ",
+      "word_ja": "ちず / チーム",
+      "word_zh": "地図·地图 / 队伍",
+      "group": "seion",
+      "row": "た行"
+    },
+    {
+      "id": "tsu",
+      "roma": "tsu",
+      "hira": "つ",
+      "kata": "ツ",
+      "word_ja": "つき / ツアー",
+      "word_zh": "月·月亮 / 旅行团",
+      "group": "seion",
+      "row": "た行"
+    },
+    {
+      "id": "te",
+      "roma": "te",
+      "hira": "て",
+      "kata": "テ",
+      "word_ja": "てがみ / テスト",
+      "word_zh": "手紙·信 / 考试",
+      "group": "seion",
+      "row": "た行"
+    },
+    {
+      "id": "to",
+      "roma": "to",
+      "hira": "と",
+      "kata": "ト",
+      "word_ja": "とり / トマト",
+      "word_zh": "鳥·鸟 / 番茄",
+      "group": "seion",
+      "row": "た行"
+    },
+    {
+      "id": "na",
+      "roma": "na",
+      "hira": "な",
+      "kata": "ナ",
+      "word_ja": "なつ / ナイフ",
+      "word_zh": "夏·夏天 / 刀",
+      "group": "seion",
+      "row": "な行"
+    },
+    {
+      "id": "ni",
+      "roma": "ni",
+      "hira": "に",
+      "kata": "ニ",
+      "word_ja": "にわ / ニュース",
+      "word_zh": "庭·庭院 / 新闻",
+      "group": "seion",
+      "row": "な行"
+    },
+    {
+      "id": "nu",
+      "roma": "nu",
+      "hira": "ぬ",
+      "kata": "ヌ",
+      "word_ja": "ぬの / ヌードル",
+      "word_zh": "布·布料 / 面条",
+      "group": "seion",
+      "row": "な行"
+    },
+    {
+      "id": "ne",
+      "roma": "ne",
+      "hira": "ね",
+      "kata": "ネ",
+      "word_ja": "ねこ / ネット",
+      "word_zh": "猫·猫 / 网络",
+      "group": "seion",
+      "row": "な行"
+    },
+    {
+      "id": "no",
+      "roma": "no",
+      "hira": "の",
+      "kata": "ノ",
+      "word_ja": "のり / ノート",
+      "word_zh": "海苔·海苔 / 笔记本",
+      "group": "seion",
+      "row": "な行"
+    },
+    {
+      "id": "ha",
+      "roma": "ha",
+      "hira": "は",
+      "kata": "ハ",
+      "word_ja": "はな / ハム",
+      "word_zh": "花·花 / 火腿",
+      "group": "seion",
+      "row": "は行"
+    },
+    {
+      "id": "hi",
+      "roma": "hi",
+      "hira": "ひ",
+      "kata": "ヒ",
+      "word_ja": "ひかり / ヒーロー",
+      "word_zh": "光·光 / 英雄",
+      "group": "seion",
+      "row": "は行"
+    },
+    {
+      "id": "fu",
+      "roma": "fu",
+      "hira": "ふ",
+      "kata": "フ",
+      "word_ja": "ふゆ / フランス",
+      "word_zh": "冬·冬天 / 法国",
+      "group": "seion",
+      "row": "は行"
+    },
+    {
+      "id": "he",
+      "roma": "he",
+      "hira": "へ",
+      "kata": "ヘ",
+      "word_ja": "へや / ヘルメット",
+      "word_zh": "部屋·房间 / 头盔",
+      "group": "seion",
+      "row": "は行"
+    },
+    {
+      "id": "ho",
+      "roma": "ho",
+      "hira": "ほ",
+      "kata": "ホ",
+      "word_ja": "ほし / ホテル",
+      "word_zh": "星·星星 / 宾馆",
+      "group": "seion",
+      "row": "は行"
+    },
+    {
+      "id": "ma",
+      "roma": "ma",
+      "hira": "ま",
+      "kata": "マ",
+      "word_ja": "まち / マンガ",
+      "word_zh": "町·城镇 / 漫画",
+      "group": "seion",
+      "row": "ま行"
+    },
+    {
+      "id": "mi",
+      "roma": "mi",
+      "hira": "み",
+      "kata": "ミ",
+      "word_ja": "みず / ミルク",
+      "word_zh": "水·水 / 牛奶",
+      "group": "seion",
+      "row": "ま行"
+    },
+    {
+      "id": "mu",
+      "roma": "mu",
+      "hira": "む",
+      "kata": "ム",
+      "word_ja": "むし / ムード",
+      "word_zh": "虫·虫 / 氛围",
+      "group": "seion",
+      "row": "ま行"
+    },
+    {
+      "id": "me",
+      "roma": "me",
+      "hira": "め",
+      "kata": "メ",
+      "word_ja": "めがね / メール",
+      "word_zh": "眼鏡·眼镜 / 邮件",
+      "group": "seion",
+      "row": "ま行"
+    },
+    {
+      "id": "mo",
+      "roma": "mo",
+      "hira": "も",
+      "kata": "モ",
+      "word_ja": "もり / モデル",
+      "word_zh": "森·森林 / 模特",
+      "group": "seion",
+      "row": "ま行"
+    },
+    {
+      "id": "ya",
+      "roma": "ya",
+      "hira": "や",
+      "kata": "ヤ",
+      "word_ja": "やま / ヤード",
+      "word_zh": "山·山 / 码",
+      "group": "seion",
+      "row": "や行"
+    },
+    {
+      "id": "yu",
+      "roma": "yu",
+      "hira": "ゆ",
+      "kata": "ユ",
+      "word_ja": "ゆき / ユーモア",
+      "word_zh": "雪·雪 / 幽默",
+      "group": "seion",
+      "row": "や行"
+    },
+    {
+      "id": "yo",
+      "roma": "yo",
+      "hira": "よ",
+      "kata": "ヨ",
+      "word_ja": "よる / ヨーグルト",
+      "word_zh": "夜·夜晚 / 酸奶",
+      "group": "seion",
+      "row": "や行"
+    },
+    {
+      "id": "ra",
+      "roma": "ra",
+      "hira": "ら",
+      "kata": "ラ",
+      "word_ja": "らくだ / ラーメン",
+      "word_zh": "駱駝·骆驼 / 拉面",
+      "group": "seion",
+      "row": "ら行"
+    },
+    {
+      "id": "ri",
+      "roma": "ri",
+      "hira": "り",
+      "kata": "リ",
+      "word_ja": "りんご / リズム",
+      "word_zh": "林檎·苹果 / 节奏",
+      "group": "seion",
+      "row": "ら行"
+    },
+    {
+      "id": "ru",
+      "roma": "ru",
+      "hira": "る",
+      "kata": "ル",
+      "word_ja": "るす / ルール",
+      "word_zh": "留守·不在 / 规则",
+      "group": "seion",
+      "row": "ら行"
+    },
+    {
+      "id": "re",
+      "roma": "re",
+      "hira": "れ",
+      "kata": "レ",
+      "word_ja": "れきし / レモン",
+      "word_zh": "歴史·历史 / 柠檬",
+      "group": "seion",
+      "row": "ら行"
+    },
+    {
+      "id": "ro",
+      "roma": "ro",
+      "hira": "ろ",
+      "kata": "ロ",
+      "word_ja": "ろうか / ロボット",
+      "word_zh": "廊下·走廊 / 机器人",
+      "group": "seion",
+      "row": "ら行"
+    },
+    {
+      "id": "wa",
+      "roma": "wa",
+      "hira": "わ",
+      "kata": "ワ",
+      "word_ja": "わたし / ワイン",
+      "word_zh": "私·我 / 葡萄酒",
+      "group": "seion",
+      "row": "わ行"
+    },
+    {
+      "id": "wo",
+      "roma": "wo",
+      "hira": "を",
+      "kata": "ヲ",
+      "word_ja": "（宾语助词）",
+      "word_zh": "宾语助词，无实义",
+      "group": "seion",
+      "row": "わ行"
+    },
+    {
+      "id": "n",
+      "roma": "n",
+      "hira": "ん",
+      "kata": "ン",
+      "word_ja": "ほん / パン",
+      "word_zh": "本·书 / 面包",
+      "group": "seion",
+      "row": "わ行"
+    },
+    {
+      "id": "ga",
+      "roma": "ga",
+      "hira": "が",
+      "kata": "ガ",
+      "word_ja": "がいこく / ガス",
+      "word_zh": "外国·外国 / 煤气",
+      "group": "dakuten",
+      "row": "が行"
+    },
+    {
+      "id": "gi",
+      "roma": "gi",
+      "hira": "ぎ",
+      "kata": "ギ",
+      "word_ja": "ぎんこう / ギター",
+      "word_zh": "銀行·银行 / 吉他",
+      "group": "dakuten",
+      "row": "が行"
+    },
+    {
+      "id": "gu",
+      "roma": "gu",
+      "hira": "ぐ",
+      "kata": "グ",
+      "word_ja": "ぐあい / グループ",
+      "word_zh": "具合·状况 / 小组",
+      "group": "dakuten",
+      "row": "が行"
+    },
+    {
+      "id": "ge",
+      "roma": "ge",
+      "hira": "げ",
+      "kata": "ゲ",
+      "word_ja": "げんき / ゲーム",
+      "word_zh": "元気·精神 / 游戏",
+      "group": "dakuten",
+      "row": "が行"
+    },
+    {
+      "id": "go",
+      "roma": "go",
+      "hira": "ご",
+      "kata": "ゴ",
+      "word_ja": "ごはん / ゴール",
+      "word_zh": "ご飯·米饭 / 终点",
+      "group": "dakuten",
+      "row": "が行"
+    },
+    {
+      "id": "za",
+      "roma": "za",
+      "hira": "ざ",
+      "kata": "ザ",
+      "word_ja": "ざっし / ザイル",
+      "word_zh": "雑誌·杂志 / 绳索",
+      "group": "dakuten",
+      "row": "ざ行"
+    },
+    {
+      "id": "ji",
+      "roma": "ji",
+      "hira": "じ",
+      "kata": "ジ",
+      "word_ja": "じかん / ジュース",
+      "word_zh": "時間·时间 / 果汁",
+      "group": "dakuten",
+      "row": "ざ行"
+    },
+    {
+      "id": "zu",
+      "roma": "zu",
+      "hira": "ず",
+      "kata": "ズ",
+      "word_ja": "ずっと / ズボン",
+      "word_zh": "一直 / 裤子",
+      "group": "dakuten",
+      "row": "ざ行"
+    },
+    {
+      "id": "ze",
+      "roma": "ze",
+      "hira": "ぜ",
+      "kata": "ゼ",
+      "word_ja": "ぜんぶ / ゼロ",
+      "word_zh": "全部·全部 / 零",
+      "group": "dakuten",
+      "row": "ざ行"
+    },
+    {
+      "id": "zo",
+      "roma": "zo",
+      "hira": "ぞ",
+      "kata": "ゾ",
+      "word_ja": "ぞうさん / ゾーン",
+      "word_zh": "象·大象 / 区域",
+      "group": "dakuten",
+      "row": "ざ行"
+    },
+    {
+      "id": "da",
+      "roma": "da",
+      "hira": "だ",
+      "kata": "ダ",
+      "word_ja": "だいがく / ダンス",
+      "word_zh": "大学·大学 / 舞蹈",
+      "group": "dakuten",
+      "row": "だ行"
+    },
+    {
+      "id": "de",
+      "roma": "de",
+      "hira": "で",
+      "kata": "デ",
+      "word_ja": "でぐち / デート",
+      "word_zh": "出口·出口 / 约会",
+      "group": "dakuten",
+      "row": "だ行"
+    },
+    {
+      "id": "do",
+      "roma": "do",
+      "hira": "ど",
+      "kata": "ド",
+      "word_ja": "どうぞ / ドア",
+      "word_zh": "请 / 门",
+      "group": "dakuten",
+      "row": "だ行"
+    },
+    {
+      "id": "ba",
+      "roma": "ba",
+      "hira": "ば",
+      "kata": "バ",
+      "word_ja": "ばしょ / バス",
+      "word_zh": "場所·地点 / 公交",
+      "group": "dakuten",
+      "row": "ば行"
+    },
+    {
+      "id": "bi",
+      "roma": "bi",
+      "hira": "び",
+      "kata": "ビ",
+      "word_ja": "びょうき / ビール",
+      "word_zh": "病気·生病 / 啤酒",
+      "group": "dakuten",
+      "row": "ば行"
+    },
+    {
+      "id": "bu",
+      "roma": "bu",
+      "hira": "ぶ",
+      "kata": "ブ",
+      "word_ja": "ぶんか / ブック",
+      "word_zh": "文化·文化 / 书",
+      "group": "dakuten",
+      "row": "ば行"
+    },
+    {
+      "id": "be",
+      "roma": "be",
+      "hira": "べ",
+      "kata": "ベ",
+      "word_ja": "べんきょう / ベッド",
+      "word_zh": "勉強·学习 / 床",
+      "group": "dakuten",
+      "row": "ば行"
+    },
+    {
+      "id": "bo",
+      "roma": "bo",
+      "hira": "ぼ",
+      "kata": "ボ",
+      "word_ja": "ぼうし / ボール",
+      "word_zh": "帽子·帽子 / 球",
+      "group": "dakuten",
+      "row": "ば行"
+    },
+    {
+      "id": "pa",
+      "roma": "pa",
+      "hira": "ぱ",
+      "kata": "パ",
+      "word_ja": "パーティー / パン",
+      "word_zh": "party / 面包",
+      "group": "handakuten",
+      "row": "ぱ行"
+    },
+    {
+      "id": "pi",
+      "roma": "pi",
+      "hira": "ぴ",
+      "kata": "ピ",
+      "word_ja": "ぴかぴか / ピアノ",
+      "word_zh": "闪亮 / 钢琴",
+      "group": "handakuten",
+      "row": "ぱ行"
+    },
+    {
+      "id": "pu",
+      "roma": "pu",
+      "hira": "ぷ",
+      "kata": "プ",
+      "word_ja": "ぷりん / プール",
+      "word_zh": "布丁 / 游泳池",
+      "group": "handakuten",
+      "row": "ぱ行"
+    },
+    {
+      "id": "pe",
+      "roma": "pe",
+      "hira": "ぺ",
+      "kata": "ペ",
+      "word_ja": "ぺらぺら / ペン",
+      "word_zh": "流利 / 钢笔",
+      "group": "handakuten",
+      "row": "ぱ行"
+    },
+    {
+      "id": "po",
+      "roma": "po",
+      "hira": "ぽ",
+      "kata": "ポ",
+      "word_ja": "ぽかぽか / ポスト",
+      "word_zh": "暖洋洋 / 邮箱",
+      "group": "handakuten",
+      "row": "ぱ行"
+    },
+    {
+      "id": "kya",
+      "roma": "kya",
+      "hira": "きゃ",
+      "kata": "キャ",
+      "word_ja": "きゃく / キャンプ",
+      "word_zh": "客·客人 / 露营",
+      "group": "youon",
+      "row": "きゃ行"
+    },
+    {
+      "id": "kyu",
+      "roma": "kyu",
+      "hira": "きゅ",
+      "kata": "キュ",
+      "word_ja": "きゅうり / キュート",
+      "word_zh": "黄瓜 / 可爱",
+      "group": "youon",
+      "row": "きゃ行"
+    },
+    {
+      "id": "kyo",
+      "roma": "kyo",
+      "hira": "きょ",
+      "kata": "キョ",
+      "word_ja": "きょう / キョリ",
+      "word_zh": "今日·今天 / 距离",
+      "group": "youon",
+      "row": "きゃ行"
+    },
+    {
+      "id": "sha",
+      "roma": "sha",
+      "hira": "しゃ",
+      "kata": "シャ",
+      "word_ja": "しゃしん / シャワー",
+      "word_zh": "写真·照片 / 淋浴",
+      "group": "youon",
+      "row": "しゃ行"
+    },
+    {
+      "id": "shu",
+      "roma": "shu",
+      "hira": "しゅ",
+      "kata": "シュ",
+      "word_ja": "しゅくだい / シュート",
+      "word_zh": "作业 / 射门",
+      "group": "youon",
+      "row": "しゃ行"
+    },
+    {
+      "id": "sho",
+      "roma": "sho",
+      "hira": "しょ",
+      "kata": "ショ",
+      "word_ja": "しょうがっこう / ショップ",
+      "word_zh": "小学 / 商店",
+      "group": "youon",
+      "row": "しゃ行"
+    },
+    {
+      "id": "cha",
+      "roma": "cha",
+      "hira": "ちゃ",
+      "kata": "チャ",
+      "word_ja": "おちゃ / チャンス",
+      "word_zh": "茶·茶 / 机会",
+      "group": "youon",
+      "row": "ちゃ行"
+    },
+    {
+      "id": "chu",
+      "roma": "chu",
+      "hira": "ちゅ",
+      "kata": "チュ",
+      "word_ja": "ちゅうごく / チューリップ",
+      "word_zh": "中国 / 郁金香",
+      "group": "youon",
+      "row": "ちゃ行"
+    },
+    {
+      "id": "cho",
+      "roma": "cho",
+      "hira": "ちょ",
+      "kata": "チョ",
+      "word_ja": "ちょっと / チョコ",
+      "word_zh": "一点点 / 巧克力",
+      "group": "youon",
+      "row": "ちゃ行"
+    },
+    {
+      "id": "nya",
+      "roma": "nya",
+      "hira": "にゃ",
+      "kata": "ニャ",
+      "word_ja": "にゃんこ",
+      "word_zh": "猫咪（口语）",
+      "group": "youon",
+      "row": "にゃ行"
+    },
+    {
+      "id": "nyu",
+      "roma": "nyu",
+      "hira": "にゅ",
+      "kata": "ニュ",
+      "word_ja": "にゅうがく / ニュース",
+      "word_zh": "入学 / 新闻",
+      "group": "youon",
+      "row": "にゃ行"
+    },
+    {
+      "id": "nyo",
+      "roma": "nyo",
+      "hira": "にょ",
+      "kata": "ニョ",
+      "word_ja": "にょろにょろ",
+      "word_zh": "蜿蜒状",
+      "group": "youon",
+      "row": "にゃ行"
+    },
+    {
+      "id": "hya",
+      "roma": "hya",
+      "hira": "ひゃ",
+      "kata": "ヒャ",
+      "word_ja": "ひゃく / ヒャクマン",
+      "word_zh": "百·一百 / 百万",
+      "group": "youon",
+      "row": "ひゃ行"
+    },
+    {
+      "id": "hyu",
+      "roma": "hyu",
+      "hira": "ひゅ",
+      "kata": "ヒュ",
+      "word_ja": "ひゅうひゅう",
+      "word_zh": "风声（拟声）",
+      "group": "youon",
+      "row": "ひゃ行"
+    },
+    {
+      "id": "hyo",
+      "roma": "hyo",
+      "hira": "ひょ",
+      "kata": "ヒョ",
+      "word_ja": "ひょうご / ヒョウ",
+      "word_zh": "兵库县 / 豹",
+      "group": "youon",
+      "row": "ひゃ行"
+    },
+    {
+      "id": "mya",
+      "roma": "mya",
+      "hira": "みゃ",
+      "kata": "ミャ",
+      "word_ja": "みゃくはく / ミャンマー",
+      "word_zh": "脉搏 / 缅甸",
+      "group": "youon",
+      "row": "みゃ行"
+    },
+    {
+      "id": "myu",
+      "roma": "myu",
+      "hira": "みゅ",
+      "kata": "ミュ",
+      "word_ja": "ミュージック",
+      "word_zh": "音乐",
+      "group": "youon",
+      "row": "みゃ行"
+    },
+    {
+      "id": "myo",
+      "roma": "myo",
+      "hira": "みょ",
+      "kata": "ミョ",
+      "word_ja": "みょうじ",
+      "word_zh": "苗字·姓",
+      "group": "youon",
+      "row": "みゃ行"
+    },
+    {
+      "id": "rya",
+      "roma": "rya",
+      "hira": "りゃ",
+      "kata": "リャ",
+      "word_ja": "りゃくご",
+      "word_zh": "略語·缩写",
+      "group": "youon",
+      "row": "りゃ行"
+    },
+    {
+      "id": "ryu",
+      "roma": "ryu",
+      "hira": "りゅ",
+      "kata": "リュ",
+      "word_ja": "りゅうがく / リュック",
+      "word_zh": "留学 / 背包",
+      "group": "youon",
+      "row": "りゃ行"
+    },
+    {
+      "id": "ryo",
+      "roma": "ryo",
+      "hira": "りょ",
+      "kata": "リョ",
+      "word_ja": "りょこう / リョカン",
+      "word_zh": "旅行 / 旅馆",
+      "group": "youon",
+      "row": "りゃ行"
+    },
+    {
+      "id": "gya",
+      "roma": "gya",
+      "hira": "ぎゃ",
+      "kata": "ギャ",
+      "word_ja": "ぎゃく / ギャップ",
+      "word_zh": "逆·相反 / 差距",
+      "group": "youon",
+      "row": "ぎゃ行"
+    },
+    {
+      "id": "gyu",
+      "roma": "gyu",
+      "hira": "ぎゅ",
+      "kata": "ギュ",
+      "word_ja": "ぎゅうにゅう",
+      "word_zh": "牛乳·牛奶",
+      "group": "youon",
+      "row": "ぎゃ行"
+    },
+    {
+      "id": "gyo",
+      "roma": "gyo",
+      "hira": "ぎょ",
+      "kata": "ギョ",
+      "word_ja": "ぎょうざ",
+      "word_zh": "餃子·饺子",
+      "group": "youon",
+      "row": "ぎゃ行"
+    },
+    {
+      "id": "ja",
+      "roma": "ja",
+      "hira": "じゃ",
+      "kata": "ジャ",
+      "word_ja": "じゃあね / ジャム",
+      "word_zh": "再见（口语）/ 果酱",
+      "group": "youon",
+      "row": "じゃ行"
+    },
+    {
+      "id": "ju",
+      "roma": "ju",
+      "hira": "じゅ",
+      "kata": "ジュ",
+      "word_ja": "じゅぎょう / ジュース",
+      "word_zh": "授業·上课 / 果汁",
+      "group": "youon",
+      "row": "じゃ行"
+    },
+    {
+      "id": "jo",
+      "roma": "jo",
+      "hira": "じょ",
+      "kata": "ジョ",
+      "word_ja": "じょうず / ジョギング",
+      "word_zh": "上手·擅长 / 慢跑",
+      "group": "youon",
+      "row": "じゃ行"
+    },
+    {
+      "id": "bya",
+      "roma": "bya",
+      "hira": "びゃ",
+      "kata": "ビャ",
+      "word_ja": "びゃくや",
+      "word_zh": "白夜",
+      "group": "youon",
+      "row": "びゃ行"
+    },
+    {
+      "id": "byu",
+      "roma": "byu",
+      "hira": "びゅ",
+      "kata": "ビュ",
+      "word_ja": "ビュッフェ",
+      "word_zh": "自助餐",
+      "group": "youon",
+      "row": "びゃ行"
+    },
+    {
+      "id": "byo",
+      "roma": "byo",
+      "hira": "びょ",
+      "kata": "ビョ",
+      "word_ja": "びょうき",
+      "word_zh": "病気·生病",
+      "group": "youon",
+      "row": "びゃ行"
+    },
+    {
+      "id": "pya",
+      "roma": "pya",
+      "hira": "ぴゃ",
+      "kata": "ピャ",
+      "word_ja": "——",
+      "word_zh": "（极少用）",
+      "group": "youon",
+      "row": "ぴゃ行"
+    },
+    {
+      "id": "pyu",
+      "roma": "pyu",
+      "hira": "ぴゅ",
+      "kata": "ピュ",
+      "word_ja": "——",
+      "word_zh": "（极少用）",
+      "group": "youon",
+      "row": "ぴゃ行"
+    },
+    {
+      "id": "pyo",
+      "roma": "pyo",
+      "hira": "ぴょ",
+      "kata": "ピョ",
+      "word_ja": "ぴょんぴょん",
+      "word_zh": "蹦蹦跳跳",
+      "group": "youon",
+      "row": "ぴゃ行"
+    }
+  ]
+}
