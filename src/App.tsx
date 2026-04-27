@@ -18,7 +18,9 @@ const EMPTY_FILTER: FilterState = { groups: new Set(), rows: new Set() };
 export default function App() {
   const { user, loading: authLoading, signIn, signUp, signOut } = useAuth();
   const [filter, setFilter] = useState<FilterState>(EMPTY_FILTER);
-  const [appMode, setAppMode] = useState<'practice' | 'browse' | 'stats'>('practice');
+  const [appMode, setAppMode] = useState<"practice" | "browse" | "stats">(
+    "practice",
+  );
   const {
     loading: cardsLoading,
     error,
@@ -44,7 +46,8 @@ export default function App() {
     restart,
     backToFilter,
   } = useSession();
-  const { records, cardStats, loadAll, addRecord, deleteRecords, clearAll } = useHistory();
+  const { records, cardStats, loadAll, addRecord, deleteRecords } =
+    useHistory();
 
   const savedRef = useRef(false);
 
@@ -139,23 +142,35 @@ export default function App() {
       {state.status === "idle" && (
         <div className="flex flex-col items-center gap-7 w-full max-w-lg">
           {/* Tabs */}
-          <div className="flex gap-1 p-1 rounded-2xl" style={{ background: '#E8EEE8' }}>
-            {(['practice', 'browse', 'stats'] as const).map(mode => (
+          <div
+            className="flex gap-1 p-1 rounded-2xl"
+            style={{ background: "#E8EEE8" }}
+          >
+            {(["practice", "browse", "stats"] as const).map((mode) => (
               <button
                 key={mode}
                 onClick={() => setAppMode(mode)}
                 className="px-5 py-1.5 rounded-xl text-sm font-medium transition-colors"
-                style={appMode === mode
-                  ? { background: '#FEFCF8', color: '#3A4A3C', boxShadow: '0 1px 4px rgba(80,110,85,0.10)' }
-                  : { background: 'transparent', color: '#8A9A8A' }
+                style={
+                  appMode === mode
+                    ? {
+                        background: "#FEFCF8",
+                        color: "#3A4A3C",
+                        boxShadow: "0 1px 4px rgba(80,110,85,0.10)",
+                      }
+                    : { background: "transparent", color: "#8A9A8A" }
                 }
               >
-                {mode === 'practice' ? '练习' : mode === 'browse' ? '浏览' : '统计'}
+                {mode === "practice"
+                  ? "练习"
+                  : mode === "browse"
+                    ? "浏览"
+                    : "统计"}
               </button>
             ))}
           </div>
 
-          {(appMode === 'practice' || appMode === 'browse') && (
+          {(appMode === "practice" || appMode === "browse") && (
             <FilterBar
               filter={filter}
               availableRows={availableRows}
@@ -163,7 +178,7 @@ export default function App() {
             />
           )}
 
-          {appMode === 'practice' && (
+          {appMode === "practice" && (
             <>
               <div className="flex items-center gap-3">
                 <p className="text-sm" style={{ color: "#A8B4A8" }}>
@@ -173,22 +188,26 @@ export default function App() {
                   </span>
                   &ensp;张卡片
                 </p>
-                <div className="flex rounded-xl overflow-hidden" style={{ border: '1px solid #D8E4D8' }}>
-                  {(['顺序', '随机'] as const).map(mode => {
-                    const active = mode === '随机' ? isRandom : !isRandom
+                <div
+                  className="flex rounded-xl overflow-hidden"
+                  style={{ border: "1px solid #D8E4D8" }}
+                >
+                  {(["顺序", "随机"] as const).map((mode) => {
+                    const active = mode === "随机" ? isRandom : !isRandom;
                     return (
                       <button
                         key={mode}
-                        onClick={() => setIsRandom(mode === '随机')}
+                        onClick={() => setIsRandom(mode === "随机")}
                         className="px-3 py-1 text-xs font-medium transition-colors"
-                        style={active
-                          ? { background: '#7A9E82', color: '#F8FCF8' }
-                          : { background: '#FEFCF8', color: '#A8B4A8' }
+                        style={
+                          active
+                            ? { background: "#7A9E82", color: "#F8FCF8" }
+                            : { background: "#FEFCF8", color: "#A8B4A8" }
                         }
                       >
                         {mode}
                       </button>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -198,27 +217,37 @@ export default function App() {
                 onClick={() => start(isRandom ? getShuffled() : getSorted())}
                 className="px-8 py-2.5 rounded-2xl text-sm font-medium tracking-wide transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 style={{ background: "#7A9E82", color: "#F8FCF8" }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "#628070")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "#7A9E82")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = "#628070")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = "#7A9E82")
+                }
               >
                 开始练习
               </button>
-
             </>
           )}
 
-          {appMode === 'browse' && (
+          {appMode === "browse" && (
             <BrowsePanel cards={filtered.length > 0 ? filtered : allCards} />
           )}
 
-          {appMode === 'stats' && (
+          {appMode === "stats" && (
             <div className="flex flex-col gap-7 w-full">
               <ErrorDashboard
                 cardStats={cardStats}
                 allCards={allCards}
-                onPractice={(cards) => { setAppMode('practice'); start(isRandom ? getShuffled(cards) : getSorted(cards)) }}
+                onPractice={(cards) => {
+                  setAppMode("practice");
+                  start(isRandom ? getShuffled(cards) : getSorted(cards));
+                }}
               />
-              <HistoryPanel records={records} allCards={allCards} onDelete={deleteRecords} />
+              <HistoryPanel
+                records={records}
+                allCards={allCards}
+                onDelete={deleteRecords}
+              />
             </div>
           )}
         </div>
@@ -250,8 +279,12 @@ export default function App() {
           wrong={wrong}
           skipped={skipped}
           onRestart={() => restart(isRandom ? getShuffled() : getSorted())}
-          onRetryWrong={() => restart(isRandom ? getShuffled(wrong) : getSorted(wrong))}
-          onRetrySkipped={() => restart(isRandom ? getShuffled(skipped) : getSorted(skipped))}
+          onRetryWrong={() =>
+            restart(isRandom ? getShuffled(wrong) : getSorted(wrong))
+          }
+          onRetrySkipped={() =>
+            restart(isRandom ? getShuffled(skipped) : getSorted(skipped))
+          }
           onBackToFilter={backToFilter}
         />
       )}
