@@ -53,7 +53,7 @@ export default function AuthGate({ onSignIn, onSignUp }: Props) {
         className="text-2xl font-semibold tracking-widest mb-10"
         style={{ color: "#6A9070" }}
       >
-        假名记忆
+        Kana Jump!
       </h1>
 
       <form

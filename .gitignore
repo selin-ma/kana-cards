@@ -4,3 +4,5 @@ dist
 .env.local
 .claude
 CLAUDE.md
+.DS_Store
+.idea

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useCards } from "./hooks/useCards";
 import { useSession } from "./hooks/useSession";
 import { useHistory } from "./hooks/useHistory";
@@ -12,8 +12,76 @@ import ErrorDashboard from "./components/ErrorDashboard";
 import AuthGate from "./components/AuthGate";
 import BrowsePanel from "./components/BrowsePanel";
 import type { FilterState } from "./hooks/useCards";
+import { saveDraft, loadDraft, clearDraft } from "./utils/sessionDraft";
+import type { SessionDraft } from "./utils/sessionDraft";
 
 const EMPTY_FILTER: FilterState = { groups: new Set(), rows: new Set() };
+
+function formatRelativeTime(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "刚刚";
+  if (mins < 60) return `${mins} 分钟前`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs} 小时前`;
+  return `${Math.floor(hrs / 24)} 天前`;
+}
+
+function ResumeDraftCard({
+  draft,
+  onResume,
+  onDiscard,
+}: {
+  draft: SessionDraft;
+  onResume: () => void;
+  onDiscard: () => void;
+}) {
+  const answered = Object.keys(draft.answers).length;
+  const total = draft.queueIds.length;
+
+  return (
+    <div
+      className="w-full rounded-2xl p-4 flex flex-col gap-3"
+      style={{ background: "#EEF4EE", border: "1px solid #C8DCC8" }}
+    >
+      <div className="flex items-center justify-between">
+        <span className="text-sm font-medium" style={{ color: "#3A4A3C" }}>
+          上次练习未完成
+        </span>
+        <span className="text-xs" style={{ color: "#8A9A8A" }}>
+          {formatRelativeTime(draft.startedAt)}
+        </span>
+      </div>
+      <p className="text-xs" style={{ color: "#6A8070" }}>
+        已完成{" "}
+        <span className="font-semibold" style={{ color: "#4A7058" }}>
+          {answered}
+        </span>{" "}
+        / {total} 张
+      </p>
+      <div className="flex gap-2">
+        <button
+          onClick={onResume}
+          className="px-4 py-1.5 rounded-xl text-xs font-medium transition-colors"
+          style={{ background: "#7A9E82", color: "#F8FCF8" }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#628070")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#7A9E82")}
+        >
+          继续上次
+        </button>
+        <button
+          onClick={onDiscard}
+          className="px-4 py-1.5 rounded-xl text-xs font-medium transition-colors"
+          style={{ background: "#E8EEE8", color: "#8A9A8A" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#C08878")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "#8A9A8A")}
+        >
+          放弃
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
   const { user, loading: authLoading, signIn, signUp, signOut } = useAuth();
@@ -43,6 +111,7 @@ export default function App() {
     skip,
     goBack,
     goNext,
+    resume,
     restart,
     backToFilter,
   } = useSession();
@@ -50,22 +119,97 @@ export default function App() {
     useHistory();
 
   const savedRef = useRef(false);
+  const sessionStartRef = useRef<string | null>(null);
+  const [pendingDraft, setPendingDraft] = useState<SessionDraft | null>(null);
 
   // Load history once user logs in
   useEffect(() => {
     if (user) loadAll();
   }, [user, loadAll]);
 
-  // Save session when finished
+  // Load saved draft once cards are available
+  useEffect(() => {
+    if (!user || allCards.length === 0 || pendingDraft !== null) return;
+    const saved = loadDraft(user.id);
+    const answeredCount = Object.keys(saved?.answers ?? {}).length;
+    if (
+      saved &&
+      answeredCount > 0 &&
+      saved.currentIndex < saved.queueIds.length
+    ) {
+      setPendingDraft(saved);
+    }
+  }, [user, allCards]);
+
+  // Auto-save draft on every card change during playing
+  useEffect(() => {
+    if (state.status === "playing" && user) {
+      if (!sessionStartRef.current) {
+        sessionStartRef.current = new Date().toISOString();
+      }
+      saveDraft(user.id, {
+        queueIds: state.queue.map((c) => c.id),
+        currentIndex: state.currentIndex,
+        answers: state.answers,
+        filterGroups: [...filter.groups],
+        filterRows: [...filter.rows],
+        startedAt: sessionStartRef.current,
+      });
+    } else if (state.status === "idle") {
+      sessionStartRef.current = null;
+    }
+  }, [state.status, state.currentIndex, state.answers, filter, user]);
+
+  // Save session when finished, then clear draft
   useEffect(() => {
     if (state.status === "finished" && !savedRef.current) {
       savedRef.current = true;
       addRecord(correct, wrong, skipped, filter);
+      if (user) clearDraft(user.id);
     }
     if (state.status !== "finished") {
       savedRef.current = false;
     }
-  }, [state.status, correct, wrong, skipped, filter, addRecord]);
+  }, [state.status, correct, wrong, skipped, filter, addRecord, user]);
+
+  // Intentional exit mid-session: save partial record then clear draft
+  const handleBackToFilter = useCallback(async () => {
+    const answeredCount = correct.length + wrong.length + skipped.length;
+    if (answeredCount > 0) {
+      const unanswered = state.queue.filter(
+        (c) => state.answers[c.id] === undefined,
+      );
+      await addRecord(correct, wrong, [...skipped, ...unanswered], filter);
+    }
+    if (user) clearDraft(user.id);
+    setPendingDraft(null);
+    backToFilter();
+  }, [
+    correct,
+    wrong,
+    skipped,
+    state.queue,
+    state.answers,
+    filter,
+    addRecord,
+    user,
+    backToFilter,
+  ]);
+
+  // Resume a saved draft
+  const handleResumeDraft = useCallback(() => {
+    if (!pendingDraft) return;
+    const queue = pendingDraft.queueIds
+      .map((id) => allCards.find((c) => c.id === id))
+      .filter((c): c is NonNullable<typeof c> => c !== undefined);
+    resume(queue, pendingDraft.currentIndex, pendingDraft.answers);
+    setPendingDraft(null);
+  }, [pendingDraft, allCards, resume]);
+
+  const handleDiscardDraft = useCallback(() => {
+    if (user) clearDraft(user.id);
+    setPendingDraft(null);
+  }, [user]);
 
   // Auth loading screen
   if (authLoading) {
@@ -123,7 +267,7 @@ export default function App() {
           className="text-2xl font-semibold tracking-widest"
           style={{ color: "#6A9070" }}
         >
-          假名记忆
+          Kana Jump!
         </h1>
         {state.status === "idle" && (
           <button
@@ -178,6 +322,14 @@ export default function App() {
             />
           )}
 
+          {appMode === "practice" && pendingDraft && (
+            <ResumeDraftCard
+              draft={pendingDraft}
+              onResume={handleResumeDraft}
+              onDiscard={handleDiscardDraft}
+            />
+          )}
+
           {appMode === "practice" && (
             <>
               <div className="flex items-center gap-3">
@@ -214,7 +366,11 @@ export default function App() {
 
               <button
                 disabled={filtered.length === 0}
-                onClick={() => start(isRandom ? getShuffled() : getSorted())}
+                onClick={() => {
+                  if (user) clearDraft(user.id);
+                  setPendingDraft(null);
+                  start(isRandom ? getShuffled() : getSorted());
+                }}
                 className="px-8 py-2.5 rounded-2xl text-sm font-medium tracking-wide transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 style={{ background: "#7A9E82", color: "#F8FCF8" }}
                 onMouseEnter={(e) =>
@@ -268,7 +424,7 @@ export default function App() {
           onSkip={skip}
           onGoBack={goBack}
           onGoNext={goNext}
-          onChangeFilter={backToFilter}
+          onChangeFilter={handleBackToFilter}
         />
       )}
 
