@@ -67,6 +67,14 @@ export function useSession() {
     })
   }, [])
 
+  const resume = useCallback((
+    queue: KanaCard[],
+    currentIndex: number,
+    answers: Record<string, CardAnswer>,
+  ) => {
+    setState({ status: 'playing', queue, currentIndex, answers })
+  }, [])
+
   const restart = useCallback((cards: KanaCard[]) => {
     setState({ status: 'playing', queue: cards, currentIndex: 0, answers: {} })
   }, [])
@@ -94,6 +102,7 @@ export function useSession() {
     skip,
     goBack,
     goNext,
+    resume,
     restart,
     backToFilter,
   }

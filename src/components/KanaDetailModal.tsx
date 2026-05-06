@@ -13,6 +13,10 @@ export default function KanaDetailModal({
   onPractice,
   practiceLabel,
 }: Props) {
+  const isCompound = card.hira.length > 1;
+  const charSize = isCompound ? "text-5xl" : "text-7xl";
+  const charGap = isCompound ? "gap-5" : "gap-10";
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-[60] px-4"
@@ -25,7 +29,7 @@ export default function KanaDetailModal({
           background: "#EEF4EF",
           border: "1px solid #D8E4D8",
           boxShadow: "0 8px 32px rgba(80,110,85,0.18)",
-          width: "280px",
+          width: "min(280px, calc(100vw - 32px))",
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -48,18 +52,18 @@ export default function KanaDetailModal({
           </button>
         </div>
 
-        <div className="flex gap-10 items-end">
-          <span className="text-7xl font-light" style={{ color: "#5A8870" }}>
+        <div className={`flex ${charGap} items-end`}>
+          <span className={`${charSize} font-light`} style={{ color: "#5A8870" }}>
             {card.hira}
           </span>
-          <span className="text-7xl font-light" style={{ color: "#7A7A9A" }}>
+          <span className={`${charSize} font-light`} style={{ color: "#7A7A9A" }}>
             {card.kata}
           </span>
         </div>
-        <p className="text-base mt-2" style={{ color: "#607060" }}>
+        <p className="text-base mt-2 text-center break-all" style={{ color: "#607060" }}>
           {card.word_ja}
         </p>
-        <p className="text-sm" style={{ color: "#9AAA9A" }}>
+        <p className="text-sm text-center break-all" style={{ color: "#9AAA9A" }}>
           {card.word_zh}
         </p>
 
