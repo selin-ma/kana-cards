@@ -5,9 +5,9 @@ Reads a chapter JSON (produced by the extraction pipeline), writes one
 mp3 per word, named by order_idx so the R2 key is stable independent of
 the database UUID.
 
-Output layout:
-    <json-dir>/audio/lesson-<N>/<order_idx:03>.mp3
-e.g. kana-jump-resources/data/minna-1/audio/lesson-01/001.mp3
+Output layout (assumes JSON lives in `<lesson-N>/data/<lesson-N>.json`):
+    <lesson-N>/audio/<order_idx:03>.mp3
+e.g. kana-jump-resources/library/minna-1/lesson-03/audio/001.mp3
 
 Usage:
     python3 scripts/generate_audio.py path/to/lesson.json [--voice NAME] [--rate -10%]
@@ -45,7 +45,8 @@ async def run(args) -> int:
     data = json.loads(json_path.read_text(encoding="utf-8"))
 
     chapter_order = data["chapter"]["order_idx"]
-    out_dir = json_path.parent / "audio" / f"lesson-{chapter_order:02d}"
+    # JSON expected at <lesson-N>/data/<file>.json → audio at <lesson-N>/audio/
+    out_dir = json_path.parent.parent / "audio"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     words = data["words"]

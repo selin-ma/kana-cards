@@ -55,7 +55,8 @@ def main():
     chapter_order = data["chapter"]["order_idx"]
     words = data["words"]
 
-    audio_dir = json_path.parent / "audio" / f"lesson-{chapter_order:02d}"
+    # JSON expected at <lesson-N>/data/<file>.json → audio at <lesson-N>/audio/
+    audio_dir = json_path.parent.parent / "audio"
     if not audio_dir.is_dir():
         sys.exit(f"audio dir not found: {audio_dir}")
 

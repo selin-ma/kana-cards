@@ -24,8 +24,10 @@ export interface VocabSessionWithMeta extends VocabSessionRecord {
 }
 
 interface BatchInput {
-  book_id: string
-  chapter_id: string
+  // Both nullable: due_review sessions span chapters and may span books,
+  // so the session row has no single book/chapter to point at.
+  book_id: string | null
+  chapter_id: string | null
   mode: VocabSessionMode
   total: number
   counts: {

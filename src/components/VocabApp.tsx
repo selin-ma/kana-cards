@@ -6,6 +6,9 @@ import { useWords } from "../hooks/useWords";
 import { useVocabHistory } from "../hooks/useVocabHistory";
 import { useVocabSession } from "../hooks/useVocabSession";
 import { saveVocabSessionBatch } from "../services/vocabProgress";
+import type { VocabSessionMode } from "../services/vocabProgress";
+import { rateWordWithFSRS } from "../services/vocabFSRS";
+import { useDueWords } from "../hooks/useDueWords";
 import type { Rating, Word } from "../types/vocab";
 import {
   clearVocabDraft,
@@ -114,12 +117,29 @@ export default function VocabApp() {
   const startedAtRef = useRef<string | null>(null);
   const resumedRef = useRef(false);
   const persistedRef = useRef(false);
+  // Track which mode this practice session belongs to so persistSession
+  // writes the correct value into vocab_sessions.mode.
+  const sessionModeRef = useRef<VocabSessionMode>("new_chapter");
+
+  // Chapter-ready picker state: how many words to practice + order.
+  // Defaults are conservative (10 sequential) — better learning rhythm
+  // than dumping all 50 cards at once.
+  const [pickCount, setPickCount] = useState<number | "all">(10);
+  const [pickOrder, setPickOrder] = useState<"sequential" | "random">(
+    "sequential",
+  );
+
+  // Fetch the due-review count whenever we land on the book picker.
+  const dueGateActive =
+    viewMode === "practice" && !pendingResume && session.state.status === "idle";
+  const due = useDueWords(dueGateActive);
 
   // Persist current session (one INSERT to vocab_sessions + batch insert
   // to vocab_attempts). Captures state synchronously so concurrent
   // session.exit() does not race the closure.
+  // For due_review mode, bookId/chapterId may be null (cross-chapter).
   const persistSession = useCallback(async () => {
-    if (!user || !bookId || !chapterId) return;
+    if (!user) return;
     const queue = session.state.queue;
     const answers = session.state.answers;
     const counts = session.counts;
@@ -137,7 +157,7 @@ export default function VocabApp() {
       await saveVocabSessionBatch({
         book_id: bookId,
         chapter_id: chapterId,
-        mode: "new_chapter",
+        mode: sessionModeRef.current,
         total: queue.length,
         counts,
         attempts,
@@ -253,13 +273,58 @@ export default function VocabApp() {
     setPendingResume(false);
   }, [user]);
 
+  // Rate persists FSRS state asynchronously. Audio playback is driven by
+  // Card.tsx on flip, not on advance.
+  const handleRate = useCallback(
+    (rating: Rating) => {
+      const current = session.state.queue[session.state.currentIndex];
+      session.rate(rating);
+      if (user && current) {
+        rateWordWithFSRS(user.id, current.id, rating).catch((e) =>
+          console.error("FSRS write failed", e),
+        );
+      }
+    },
+    [user, session],
+  );
+
   const handleStart = useCallback(() => {
     if (user) clearVocabDraft(user.id);
     setDraft(null);
     persistedRef.current = false;
     startedAtRef.current = new Date().toISOString();
-    session.start(words);
-  }, [user, words, session]);
+    sessionModeRef.current = "new_chapter";
+
+    let queue: Word[] = words;
+    if (pickOrder === "random") {
+      queue = [...words];
+      for (let i = queue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [queue[i], queue[j]] = [queue[j], queue[i]];
+      }
+    }
+    if (typeof pickCount === "number") {
+      queue = queue.slice(0, pickCount);
+    }
+    session.start(queue);
+  }, [user, words, session, pickCount, pickOrder]);
+
+  // Pull words whose FSRS `due` has passed, across all chapters, and
+  // start a cross-chapter review session. Resets book/chapter state so
+  // persistSession writes book_id=null/chapter_id=null.
+  const handleStartDueReview = useCallback(async () => {
+    if (!user) return;
+    const dueWords = await due.fetch(20);
+    if (dueWords.length === 0) return;
+    clearVocabDraft(user.id);
+    setDraft(null);
+    setBookId(null);
+    setChapterId(null);
+    persistedRef.current = false;
+    startedAtRef.current = new Date().toISOString();
+    sessionModeRef.current = "due_review";
+    session.start(dueWords);
+  }, [user, due, session]);
 
   // Mid-session exit: persist what's been answered, then reset.
   const handleExit = useCallback(() => {
@@ -290,7 +355,7 @@ export default function VocabApp() {
         currentIndex={session.state.currentIndex}
         total={session.state.queue.length}
         counts={session.counts}
-        onRate={session.rate}
+        onRate={handleRate}
         onSkip={session.skip}
         onGoBack={session.goBack}
         onGoNext={session.goNext}
@@ -331,7 +396,7 @@ export default function VocabApp() {
     );
   }
 
-  // Book picker (with optional resume card)
+  // Book picker (with optional resume card + due-review entry)
   if (!book) {
     return (
       <div className="flex flex-col items-center gap-4 w-full">
@@ -341,6 +406,39 @@ export default function VocabApp() {
             onResume={handleResumeDraft}
             onDiscard={handleDiscardDraft}
           />
+        )}
+        {due.count > 0 && (
+          <div
+            className="w-full max-w-sm rounded-2xl p-4 flex items-center justify-between gap-3"
+            style={{
+              background: "linear-gradient(135deg, #EEF4EF 0%, #D8E4D8 100%)",
+              border: "1px solid #B8C8B8",
+              boxShadow: "0 2px 12px 0 rgba(80,110,85,0.10)",
+            }}
+          >
+            <div className="flex flex-col gap-0.5">
+              <span
+                className="text-sm font-medium"
+                style={{ color: "#3A4A3C" }}
+              >
+                今日待复习
+              </span>
+              <span className="text-xs" style={{ color: "#6A8070" }}>
+                FSRS 算法挑选的&nbsp;
+                <span className="font-semibold" style={{ color: "#4A7058" }}>
+                  {due.count}
+                </span>
+                &nbsp;张
+              </span>
+            </div>
+            <button
+              onClick={handleStartDueReview}
+              className="px-4 py-2 rounded-xl text-sm font-medium tracking-wide transition-colors"
+              style={{ background: "#7A9E82", color: "#F8FCF8" }}
+            >
+              开始复习
+            </button>
+          </div>
         )}
         <div className="w-full max-w-sm flex justify-end">
           <button
@@ -391,6 +489,10 @@ export default function VocabApp() {
     );
   }
 
+  // Resolve effective queue length after pickCount filtering, for display.
+  const effectiveCount =
+    pickCount === "all" ? words.length : Math.min(pickCount, words.length);
+
   return (
     <div className="flex flex-col items-center gap-5 w-full max-w-sm">
       <div className="flex items-center justify-between w-full">
@@ -412,13 +514,82 @@ export default function VocabApp() {
         </span>
         &nbsp;个词条
       </p>
+
+      {/* Count picker */}
+      <div className="flex flex-col items-center gap-1.5">
+        <span className="text-[11px]" style={{ color: "#A8B4A8" }}>
+          数量
+        </span>
+        <div
+          className="flex gap-1 p-1 rounded-xl"
+          style={{ background: "#E8EEE8" }}
+        >
+          {([10, 20, "all"] as const).map((c) => {
+            const active = c === pickCount;
+            const label = c === "all" ? "全部" : `${c} 张`;
+            return (
+              <button
+                key={String(c)}
+                onClick={() => setPickCount(c)}
+                className="px-4 py-1 rounded-lg text-xs font-medium transition-colors"
+                style={
+                  active
+                    ? {
+                        background: "#FEFCF8",
+                        color: "#3A4A3C",
+                        boxShadow: "0 1px 4px rgba(80,110,85,0.10)",
+                      }
+                    : { background: "transparent", color: "#8A9A8A" }
+                }
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Order picker */}
+      <div className="flex flex-col items-center gap-1.5">
+        <span className="text-[11px]" style={{ color: "#A8B4A8" }}>
+          顺序
+        </span>
+        <div
+          className="flex gap-1 p-1 rounded-xl"
+          style={{ background: "#E8EEE8" }}
+        >
+          {(["sequential", "random"] as const).map((o) => {
+            const active = o === pickOrder;
+            const label = o === "sequential" ? "顺序" : "随机";
+            return (
+              <button
+                key={o}
+                onClick={() => setPickOrder(o)}
+                className="px-4 py-1 rounded-lg text-xs font-medium transition-colors"
+                style={
+                  active
+                    ? {
+                        background: "#FEFCF8",
+                        color: "#3A4A3C",
+                        boxShadow: "0 1px 4px rgba(80,110,85,0.10)",
+                      }
+                    : { background: "transparent", color: "#8A9A8A" }
+                }
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <button
         disabled={words.length === 0}
         onClick={handleStart}
         className="px-8 py-2.5 rounded-2xl text-sm font-medium tracking-wide transition-colors disabled:opacity-30"
         style={{ background: "#7A9E82", color: "#F8FCF8" }}
       >
-        开始练习
+        开始练习 ({effectiveCount} 张)
       </button>
     </div>
   );
