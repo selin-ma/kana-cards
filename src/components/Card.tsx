@@ -28,7 +28,7 @@ export default function Card({ card, answered, onAnswer, onSkip }: Props) {
     <div className="flex flex-col items-center gap-6">
       <div
         className="card-flip cursor-pointer select-none w-[300px] h-[260px]"
-        onClick={() => !flipped && setFlipped(true)}
+        onClick={() => setFlipped((p) => !p)}
       >
         <div className={`card-inner ${flipped ? "flipped" : ""}`}>
           {/* Front */}

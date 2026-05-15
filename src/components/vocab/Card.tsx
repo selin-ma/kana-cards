@@ -49,13 +49,15 @@ export default function VocabCard({ word, answered, onRate, onSkip }: Props) {
   // Japanese text to speak: prefer kana for pronunciation accuracy
   const speakText = word.kana.replace(/[～〜]/g, "");
 
-  // Synchronously fire speech inside the click handler so Chrome's
-  // autoplay policy treats it as a user gesture (useEffect-driven plays
-  // are silently blocked).
+  // Toggle flip. Audio only fires when flipping front→back (user wants
+  // to peek the back), not back→front. Synchronous play in the click
+  // handler satisfies Chrome's autoplay policy.
   const handleFlip = () => {
-    if (flipped) return;
-    setFlipped(true);
-    playWord(speakText, word.audio_url);
+    const willFlipToBack = !flipped;
+    setFlipped(willFlipToBack);
+    if (willFlipToBack) {
+      playWord(speakText, word.audio_url);
+    }
   };
 
   return (
