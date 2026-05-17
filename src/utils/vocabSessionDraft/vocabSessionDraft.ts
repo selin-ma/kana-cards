@@ -1,4 +1,4 @@
-import type { Rating } from '../types/vocab'
+import type { Rating } from '../../types/vocab'
 
 // In-session answer: an FSRS rating, or 'skipped' (does not influence FSRS).
 export type VocabAnswer = Rating | 'skipped'

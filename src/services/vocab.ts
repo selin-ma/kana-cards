@@ -2,10 +2,7 @@ import { supabase } from '../lib/supabase'
 import type { Book, Chapter, Word } from '../types/vocab'
 
 export async function fetchBooks(): Promise<Book[]> {
-  const { data, error } = await supabase
-    .from('books')
-    .select('*')
-    .order('code')
+  const { data, error } = await supabase.from('books').select('*').order('code')
   if (error) throw error
   return (data ?? []) as Book[]
 }
