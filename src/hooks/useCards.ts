@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import type { KanaCard, KanaData } from '../types/kana'
-import { sortKana, ROW_ORDER } from '../utils/kanaOrder'
+import { sortKana, ROW_ORDER } from '../utils/kanaOrder/kanaOrder'
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
@@ -46,9 +46,10 @@ export function useCards(filter: FilterState) {
   }, [allCards, filter])
 
   const availableRows = useMemo(() => {
-    const base = filter.groups.size > 0
-      ? allCards.filter((c) => filter.groups.has(c.group))
-      : allCards
+    const base =
+      filter.groups.size > 0
+        ? allCards.filter((c) => filter.groups.has(c.group))
+        : allCards
     const rowSet = [...new Set(base.map((c) => c.row))]
     return rowSet.sort((a, b) => {
       const ra = ROW_ORDER.indexOf(a)

@@ -10,7 +10,9 @@ export const supabaseStorage: IStorageService = {
     skipped: KanaCard[],
     filter: FilterState,
   ) {
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
     if (!user) throw new Error('Not authenticated')
 
     const { data: session, error: sessionErr } = await supabase
@@ -30,9 +32,24 @@ export const supabaseStorage: IStorageService = {
     if (sessionErr || !session) throw sessionErr
 
     const attempts = [
-      ...correct.map(c => ({ user_id: user.id, session_id: session.id, card_id: c.id, result: 'correct' as const })),
-      ...wrong.map(c => ({ user_id: user.id, session_id: session.id, card_id: c.id, result: 'wrong' as const })),
-      ...skipped.map(c => ({ user_id: user.id, session_id: session.id, card_id: c.id, result: 'skipped' as const })),
+      ...correct.map((c) => ({
+        user_id: user.id,
+        session_id: session.id,
+        card_id: c.id,
+        result: 'correct' as const,
+      })),
+      ...wrong.map((c) => ({
+        user_id: user.id,
+        session_id: session.id,
+        card_id: c.id,
+        result: 'wrong' as const,
+      })),
+      ...skipped.map((c) => ({
+        user_id: user.id,
+        session_id: session.id,
+        card_id: c.id,
+        result: 'skipped' as const,
+      })),
     ]
 
     if (attempts.length > 0) {
@@ -63,9 +80,7 @@ export const supabaseStorage: IStorageService = {
   },
 
   async getCardStats(): Promise<CardStats> {
-    const { data, error } = await supabase
-      .from('card_attempts')
-      .select('card_id, result')
+    const { data, error } = await supabase.from('card_attempts').select('card_id, result')
 
     if (error) throw error
 

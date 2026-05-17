@@ -42,11 +42,7 @@ async function fetchProgress(
   return (data ?? null) as WordProgress | null
 }
 
-async function upsertProgress(
-  userId: string,
-  wordId: string,
-  card: Card,
-): Promise<void> {
+async function upsertProgress(userId: string, wordId: string, card: Card): Promise<void> {
   const now = new Date().toISOString()
   const { error } = await supabase.from('user_word_progress').upsert(
     {
@@ -58,9 +54,7 @@ async function upsertProgress(
       state: card.state as WordState,
       reps: card.reps,
       lapses: card.lapses,
-      last_review: card.last_review
-        ? card.last_review.toISOString()
-        : now,
+      last_review: card.last_review ? card.last_review.toISOString() : now,
       updated_at: now,
     },
     { onConflict: 'user_id,word_id' },
@@ -84,9 +78,7 @@ export async function rateWordWithFSRS(
 
 // Fetch words whose `due` time is in the past or now, across all chapters.
 // Joins `words` to return full Word objects ordered by oldest-due-first.
-export async function fetchDueWords(
-  limit = 30,
-): Promise<Word[]> {
+export async function fetchDueWords(limit = 30): Promise<Word[]> {
   const {
     data: { user },
   } = await supabase.auth.getUser()

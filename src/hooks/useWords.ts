@@ -17,10 +17,18 @@ export function useWords(chapterId: string | null) {
     setLoading(true)
     setError(null)
     fetchWordsByChapter(chapterId)
-      .then((data) => { if (active) setWords(data) })
-      .catch((e) => { if (active) setError(String(e?.message ?? e)) })
-      .finally(() => { if (active) setLoading(false) })
-    return () => { active = false }
+      .then((data) => {
+        if (active) setWords(data)
+      })
+      .catch((e) => {
+        if (active) setError(String(e?.message ?? e))
+      })
+      .finally(() => {
+        if (active) setLoading(false)
+      })
+    return () => {
+      active = false
+    }
   }, [chapterId])
 
   return { words, loading, error }
