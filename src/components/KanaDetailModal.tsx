@@ -1,10 +1,10 @@
-import type { KanaCard } from "../types/kana";
+import type { KanaCard } from '../types/kana'
 
 interface Props {
-  card: KanaCard;
-  onClose: () => void;
-  onPractice?: () => void;
-  practiceLabel?: string;
+  card: KanaCard
+  onClose: () => void
+  onPractice?: () => void
+  practiceLabel?: string
 }
 
 export default function KanaDetailModal({
@@ -13,81 +13,78 @@ export default function KanaDetailModal({
   onPractice,
   practiceLabel,
 }: Props) {
-  const isCompound = card.hira.length > 1;
-  const charSize = isCompound ? "text-5xl" : "text-7xl";
-  const charGap = isCompound ? "gap-5" : "gap-10";
+  const isCompound = card.hira.length > 1
+  const charSize = isCompound ? 'text-5xl' : 'text-7xl'
+  const charGap = isCompound ? 'gap-5' : 'gap-10'
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center z-[60] px-4"
-      style={{ background: "rgba(58,74,60,0.22)" }}
+      className='fixed inset-0 flex items-center justify-center z-[60] px-4'
+      style={{ background: 'rgba(58,74,60,0.22)' }}
       onClick={onClose}
     >
       <div
-        className="rounded-2xl p-8 flex flex-col items-center gap-4 relative"
+        className='rounded-2xl p-8 flex flex-col items-center gap-4 relative'
         style={{
-          background: "#EEF4EF",
-          border: "1px solid #D8E4D8",
-          boxShadow: "0 8px 32px rgba(80,110,85,0.18)",
-          width: "min(280px, calc(100vw - 32px))",
+          background: '#EEF4EF',
+          border: '1px solid #D8E4D8',
+          boxShadow: '0 8px 32px rgba(80,110,85,0.18)',
+          width: 'min(280px, calc(100vw - 32px))',
         }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top row: roma left, close right */}
-        <div className="flex items-center justify-between w-full">
-          <span
-            className="text-sm tracking-widest"
-            style={{ color: "#A8C0AA" }}
-          >
+        <div className='flex items-center justify-between w-full'>
+          <span className='text-sm tracking-widest' style={{ color: '#A8C0AA' }}>
             {card.roma}
           </span>
           <button
             onClick={onClose}
-            className="text-xl leading-none transition-colors"
-            style={{ color: "#C0CAC0" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#7A9E82")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#C0CAC0")}
+            className='text-xl leading-none transition-colors'
+            style={{ color: '#C0CAC0' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#7A9E82')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#C0CAC0')}
           >
             ×
           </button>
         </div>
 
         <div className={`flex ${charGap} items-end`}>
-          <span className={`${charSize} font-light`} style={{ color: "#5A8870" }}>
+          <span className={`${charSize} font-light`} style={{ color: '#5A8870' }}>
             {card.hira}
           </span>
-          <span className={`${charSize} font-light`} style={{ color: "#7A7A9A" }}>
+          <span className={`${charSize} font-light`} style={{ color: '#7A7A9A' }}>
             {card.kata}
           </span>
         </div>
-        <p className="text-base mt-2 text-center break-all" style={{ color: "#607060" }}>
+        <p className='text-base mt-2 text-center break-all' style={{ color: '#607060' }}>
           {card.word_ja}
         </p>
-        <p className="text-sm text-center break-all" style={{ color: "#9AAA9A" }}>
+        <p className='text-sm text-center break-all' style={{ color: '#9AAA9A' }}>
           {card.word_zh}
         </p>
 
         {onPractice && (
           <button
             onClick={onPractice}
-            className="px-5 py-1.5 rounded-xl text-xs font-medium transition-colors mt-1"
-            style={{ background: "#7A9E82", color: "#F8FCF8" }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#628070")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#7A9E82")}
+            className='px-5 py-1.5 rounded-xl text-xs font-medium transition-colors mt-1'
+            style={{ background: '#7A9E82', color: '#F8FCF8' }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = '#628070')}
+            onMouseLeave={(e) => (e.currentTarget.style.background = '#7A9E82')}
           >
-            {practiceLabel ?? "去练习"}
+            {practiceLabel ?? '去练习'}
           </button>
         )}
         <button
           onClick={onClose}
-          className="text-xs transition-colors"
-          style={{ color: "#C0CAC0" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#7A9E82")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "#C0CAC0")}
+          className='text-xs transition-colors'
+          style={{ color: '#C0CAC0' }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = '#7A9E82')}
+          onMouseLeave={(e) => (e.currentTarget.style.color = '#C0CAC0')}
         >
           关闭
         </button>
       </div>
     </div>
-  );
+  )
 }

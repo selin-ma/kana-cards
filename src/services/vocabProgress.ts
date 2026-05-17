@@ -46,9 +46,7 @@ interface BatchInput {
 // default; we don't need to pass it explicitly here (the policy's
 // with_check on auth.uid() = user_id requires user_id to be present,
 // so include it via auth.getUser if you hit RLS errors).
-export async function saveVocabSessionBatch(
-  input: BatchInput,
-): Promise<string> {
+export async function saveVocabSessionBatch(input: BatchInput): Promise<string> {
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -87,9 +85,7 @@ export async function saveVocabSessionBatch(
   return sessionId
 }
 
-export async function fetchVocabHistory(
-  limit = 50,
-): Promise<VocabSessionWithMeta[]> {
+export async function fetchVocabHistory(limit = 50): Promise<VocabSessionWithMeta[]> {
   const { data, error } = await supabase
     .from('vocab_sessions')
     .select(

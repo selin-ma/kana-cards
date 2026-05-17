@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  background: #F5F2EC;
+html,
+body {
+  background: #f5f2ec;
 }
 
 .card-flip {

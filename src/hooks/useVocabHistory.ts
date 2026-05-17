@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import type { VocabSessionWithMeta } from '../services/vocabProgress'
-import {
-  deleteVocabSessions,
-  fetchVocabHistory,
-} from '../services/vocabProgress'
+import { deleteVocabSessions, fetchVocabHistory } from '../services/vocabProgress'
 
 export function useVocabHistory(enabled: boolean) {
   const [records, setRecords] = useState<VocabSessionWithMeta[]>([])

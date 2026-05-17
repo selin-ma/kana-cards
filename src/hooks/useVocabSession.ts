@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import type { Word, Rating } from '../types/vocab'
-import type { VocabAnswer } from '../utils/vocabSessionDraft'
+import type { VocabAnswer } from '../utils/vocabSessionDraft/vocabSessionDraft'
 
 type Status = 'idle' | 'playing' | 'finished'
 
@@ -29,17 +29,12 @@ export function useVocabSession() {
   // back to Word objects). If the index is past the queue, jump to
   // finished so the UI shows results instead of getting stuck.
   const resume = useCallback(
-    (
-      queue: Word[],
-      currentIndex: number,
-      answers: Record<string, VocabAnswer>,
-    ) => {
+    (queue: Word[], currentIndex: number, answers: Record<string, VocabAnswer>) => {
       if (queue.length === 0) {
         setState(INITIAL)
         return
       }
-      const status: Status =
-        currentIndex >= queue.length ? 'finished' : 'playing'
+      const status: Status = currentIndex >= queue.length ? 'finished' : 'playing'
       setState({ status, queue, currentIndex, answers })
     },
     [],

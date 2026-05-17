@@ -27,28 +27,34 @@ export function useHistory() {
     }
   }, [])
 
-  const addRecord = useCallback(async (
-    correct: KanaCard[],
-    wrong: KanaCard[],
-    skipped: KanaCard[],
-    filter: FilterState,
-  ) => {
-    try {
-      await supabaseStorage.saveSession(correct, wrong, skipped, filter)
-      await loadAll()
-    } catch (e) {
-      console.error('Failed to save session', e)
-    }
-  }, [loadAll])
+  const addRecord = useCallback(
+    async (
+      correct: KanaCard[],
+      wrong: KanaCard[],
+      skipped: KanaCard[],
+      filter: FilterState,
+    ) => {
+      try {
+        await supabaseStorage.saveSession(correct, wrong, skipped, filter)
+        await loadAll()
+      } catch (e) {
+        console.error('Failed to save session', e)
+      }
+    },
+    [loadAll],
+  )
 
-  const deleteRecords = useCallback(async (ids: string[]) => {
-    try {
-      await supabaseStorage.deleteRecords(ids)
-      await loadAll()
-    } catch (e) {
-      console.error('Failed to delete records', e)
-    }
-  }, [loadAll])
+  const deleteRecords = useCallback(
+    async (ids: string[]) => {
+      try {
+        await supabaseStorage.deleteRecords(ids)
+        await loadAll()
+      } catch (e) {
+        console.error('Failed to delete records', e)
+      }
+    },
+    [loadAll],
+  )
 
   const clearAll = useCallback(async () => {
     try {

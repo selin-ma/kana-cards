@@ -15,16 +15,39 @@ export function speakJa(text: string) {
   u.pitch = 1.0
   const voices = window.speechSynthesis.getVoices()
   const ja =
-    voices.find((v) => v.lang === 'ja-JP') ??
-    voices.find((v) => v.lang.startsWith('ja'))
+    voices.find((v) => v.lang === 'ja-JP') ?? voices.find((v) => v.lang.startsWith('ja'))
   if (ja) u.voice = ja
   window.speechSynthesis.speak(u)
 }
 
+let _audio: HTMLAudioElement | null = null
+
 export function playWord(text: string, audioUrl?: string | null) {
+  window.speechSynthesis.cancel()
+  if (_audio) {
+    _audio.pause()
+    _audio.onended = null
+    _audio.onerror = null
+    _audio = null
+  }
+
   if (audioUrl) {
     const a = new Audio(audioUrl)
-    void a.play().catch(() => speakJa(text))
+    _audio = a
+    const cleanup = () => {
+      if (_audio === a) {
+        _audio = null
+      }
+    }
+    a.onended = cleanup
+    a.onerror = () => {
+      cleanup()
+      speakJa(text)
+    }
+    void a.play().catch(() => {
+      cleanup()
+      speakJa(text)
+    })
     return
   }
   speakJa(text)
