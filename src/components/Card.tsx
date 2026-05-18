@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { KanaCard } from '../types/kana'
-import type { CardAnswer } from '../hooks/useSession'
+import type { CardAnswer } from '../hooks/useSession/useSession'
 
 interface Props {
   card: KanaCard

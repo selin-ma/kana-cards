@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import type { KanaCard } from '../types/kana'
+import type { KanaCard } from '../../types/kana'
 
 export type SessionStatus = 'idle' | 'playing' | 'finished'
 export type CardAnswer = boolean | 'skipped'

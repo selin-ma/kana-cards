@@ -1,7 +1,7 @@
 import { supabase } from '../lib/supabase'
 import type { IStorageService, SessionRecord, SessionAttempt, CardStats } from './storage'
 import type { KanaCard } from '../types/kana'
-import type { FilterState } from '../hooks/useCards'
+import type { FilterState } from '../hooks/useCards/useCards'
 
 export const supabaseStorage: IStorageService = {
   async saveSession(

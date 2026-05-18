@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { playWord } from '../../utils/speak/speak'
+import { playWord } from '../../../utils/speak/speak'
 
 interface Props {
   text: string

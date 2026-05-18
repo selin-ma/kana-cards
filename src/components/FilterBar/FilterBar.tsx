@@ -1,5 +1,5 @@
-import type { KanaCard } from '../types/kana'
-import type { FilterState } from '../hooks/useCards'
+import type { KanaCard } from '../../types/kana'
+import type { FilterState } from '../../hooks/useCards/useCards'
 
 const GROUP_LABELS: Record<KanaCard['group'], string> = {
   seion: '清音',
