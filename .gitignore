@@ -1,8 +1,14 @@
 node_modules
 dist
+dev-dist
 .env
 .env.local
 .claude
 CLAUDE.md
 .DS_Store
 .idea
+.vscode
+.agents
+skills-lock.json
+npm-debug.log
+*.log

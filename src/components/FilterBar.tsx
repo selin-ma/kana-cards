@@ -47,12 +47,18 @@ export default function FilterBar({ filter, availableRows, onChange }: Props) {
     return (
       <button
         onClick={onClick}
-        className="px-3 py-1 rounded-full text-xs font-medium transition-colors"
-        style={active
-          ? { background: '#7A9E82', color: '#F8FCF8' }
-          : { background: '#E4EAE4', color: '#607060' }}
-        onMouseEnter={e => { if (!active) e.currentTarget.style.background = '#D8E4D8' }}
-        onMouseLeave={e => { if (!active) e.currentTarget.style.background = '#E4EAE4' }}
+        className='px-3 py-1 rounded-full text-xs font-medium transition-colors'
+        style={
+          active
+            ? { background: '#7A9E82', color: '#F8FCF8' }
+            : { background: '#E4EAE4', color: '#607060' }
+        }
+        onMouseEnter={(e) => {
+          if (!active) e.currentTarget.style.background = '#D8E4D8'
+        }}
+        onMouseLeave={(e) => {
+          if (!active) e.currentTarget.style.background = '#E4EAE4'
+        }}
       >
         {children}
       </button>
@@ -60,10 +66,14 @@ export default function FilterBar({ filter, availableRows, onChange }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-3 w-full">
-      <div className="flex flex-wrap gap-1.5 items-center">
-        <span className="text-xs mr-1" style={{ color: '#B8C4B8' }}>分组</span>
-        <Tag active={noFilter} onClick={clearAll}>全选</Tag>
+    <div className='flex flex-col gap-3 w-full'>
+      <div className='flex flex-wrap gap-1.5 items-center'>
+        <span className='text-xs mr-1' style={{ color: '#B8C4B8' }}>
+          分组
+        </span>
+        <Tag active={noFilter} onClick={clearAll}>
+          全选
+        </Tag>
         {ALL_GROUPS.map((g) => (
           <Tag key={g} active={filter.groups.has(g)} onClick={() => toggleGroup(g)}>
             {GROUP_LABELS[g]}
@@ -72,8 +82,10 @@ export default function FilterBar({ filter, availableRows, onChange }: Props) {
       </div>
 
       {availableRows.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 items-center">
-          <span className="text-xs mr-1" style={{ color: '#B8C4B8' }}>行</span>
+        <div className='flex flex-wrap gap-1.5 items-center'>
+          <span className='text-xs mr-1' style={{ color: '#B8C4B8' }}>
+            行
+          </span>
           {availableRows.map((row) => (
             <Tag key={row} active={filter.rows.has(row)} onClick={() => toggleRow(row)}>
               {row}

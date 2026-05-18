@@ -1,4 +1,4 @@
-import type { CardAnswer } from '../hooks/useSession'
+import type { CardAnswer } from '../../hooks/useSession'
 
 export interface SessionDraft {
   queueIds: string[]
