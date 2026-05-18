@@ -10,3 +10,5 @@ CLAUDE.md
 .vscode
 .agents
 skills-lock.json
+npm-debug.log
+*.log
