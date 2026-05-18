@@ -4,7 +4,7 @@
  */
 
 import type { KanaCard } from '../types/kana'
-import type { FilterState } from '../hooks/useCards'
+import type { FilterState } from '../hooks/useCards/useCards'
 
 export interface SessionRecord {
   id: string

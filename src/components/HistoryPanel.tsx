@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import type { SessionRecord } from '../hooks/useHistory'
+import type { SessionRecord } from '../hooks/useHistory/useHistory'
 import type { SessionAttempt } from '../services/storage'
 import type { KanaCard } from '../types/kana'
 import { supabaseStorage } from '../services/supabaseStorage'
-import KanaDetailModal from './KanaDetailModal'
+import KanaDetailModal from './KanaDetailModal/KanaDetailModal'
 
 interface Props {
   records: SessionRecord[]

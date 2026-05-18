@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
-import type { Word, Rating } from '../types/vocab'
-import type { VocabAnswer } from '../utils/vocabSessionDraft/vocabSessionDraft'
+import type { Word, Rating } from '../../types/vocab'
+import type { VocabAnswer } from '../../utils/vocabSessionDraft/vocabSessionDraft'
 
 type Status = 'idle' | 'playing' | 'finished'
 

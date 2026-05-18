@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import type { Chapter } from '../types/vocab'
-import { fetchChapters } from '../services/vocab'
+import type { Chapter } from '../../types/vocab'
+import { fetchChapters } from '../../services/vocab'
 
 export function useChapters(bookId: string | null) {
   const [chapters, setChapters] = useState<Chapter[]>([])

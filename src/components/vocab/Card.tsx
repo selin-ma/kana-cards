@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import type { Word, Rating } from '../../types/vocab'
 import { RATING } from '../../types/vocab'
 import type { VocabAnswer } from '../../utils/vocabSessionDraft/vocabSessionDraft'
-import AudioButton from './AudioButton'
+import AudioButton from './AudioButton/AudioButton'
 import { playWord } from '../../utils/speak/speak'
 import { getFurigana } from '../../utils/furigana/furigana'
 

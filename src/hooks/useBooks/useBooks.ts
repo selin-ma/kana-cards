@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import type { Book } from '../types/vocab'
-import { fetchBooks } from '../services/vocab'
+import type { Book } from '../../types/vocab'
+import { fetchBooks } from '../../services/vocab'
 
 export function useBooks() {
   const [books, setBooks] = useState<Book[]>([])

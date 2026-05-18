@@ -1,4 +1,4 @@
-import type { KanaCard } from '../types/kana'
+import type { KanaCard } from '../../types/kana'
 
 interface Props {
   card: KanaCard

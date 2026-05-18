@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import type { KanaCard } from '../types/kana'
-import type { CardStats } from '../hooks/useHistory'
-import KanaDetailModal from './KanaDetailModal'
+import type { CardStats } from '../hooks/useHistory/useHistory'
+import KanaDetailModal from './KanaDetailModal/KanaDetailModal'
 import { ROW_ORDER } from '../utils/kanaOrder/kanaOrder'
 
 interface Props {

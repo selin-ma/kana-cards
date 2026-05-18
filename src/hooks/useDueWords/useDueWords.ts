@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { countDueWords, fetchDueWords } from '../services/vocabFSRS'
-import type { Word } from '../types/vocab'
+import { countDueWords, fetchDueWords } from '../../services/vocabFSRS'
+import type { Word } from '../../types/vocab'
 
 // Loads the user's count of words whose FSRS `due` is now-or-past.
 // `enabled` controls whether the count is fetched (avoid hitting the

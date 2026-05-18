@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import type { KanaCard } from '../types/kana'
-import KanaDetailModal from './KanaDetailModal'
+import KanaDetailModal from './KanaDetailModal/KanaDetailModal'
 
 interface Props {
   cards: KanaCard[]

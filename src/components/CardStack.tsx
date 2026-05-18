@@ -1,7 +1,7 @@
 import Card from './Card'
-import SessionStats from './SessionStats'
+import SessionStats from './SessionStats/SessionStats'
 import type { KanaCard } from '../types/kana'
-import type { CardAnswer } from '../hooks/useSession'
+import type { CardAnswer } from '../hooks/useSession/useSession'
 
 interface Props {
   card: KanaCard

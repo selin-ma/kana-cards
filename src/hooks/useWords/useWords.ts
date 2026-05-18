@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import type { Word } from '../types/vocab'
-import { fetchWordsByChapter } from '../services/vocab'
+import type { Word } from '../../types/vocab'
+import { fetchWordsByChapter } from '../../services/vocab'
 
 export function useWords(chapterId: string | null) {
   const [words, setWords] = useState<Word[]>([])

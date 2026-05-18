@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import type { KanaCard, KanaData } from '../types/kana'
-import { sortKana, ROW_ORDER } from '../utils/kanaOrder/kanaOrder'
+import type { KanaCard, KanaData } from '../../types/kana'
+import { sortKana, ROW_ORDER } from '../../utils/kanaOrder/kanaOrder'
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
